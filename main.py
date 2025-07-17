@@ -41,7 +41,6 @@ def save_score(number_of_guesses, high):
 def play(low, high):
     """Play guessing game using current low and high values."""
     secret = random.randint(low, high)
-    print(f"secret number: {secret}")
     number_of_guesses = 1
     guess = int(input(f"Guess a number between {low} and {high}: "))
     while guess != secret:
