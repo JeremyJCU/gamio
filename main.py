@@ -60,8 +60,7 @@ def play(low, high):
     if choice.upper() == "Y":
         save_score(number_of_guesses, high)
         return
-    else:
-        print("Fine then.")
+    print("Fine then.")
 
 
 def set_limit(low):
