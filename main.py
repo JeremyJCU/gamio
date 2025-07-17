@@ -74,8 +74,9 @@ def set_limit(low):
 
 
 def get_valid_number(prompt):
+    """Get valid number from user input."""
     is_valid = False
-    while is_valid == False:
+    while not is_valid:
         try:
             number = int(input(prompt))
             is_valid = True
@@ -83,12 +84,10 @@ def get_valid_number(prompt):
             print("Invalid number")
     return number
 
-
 def good_score(number_of_guesses, range_of_guesses):
     """Check if guess is good or not."""
-    #This represents a binary search, the most efficient way to find a answer to guessing game
+    # This represents a binary search, the most efficient way to find a answer to guessing game
     return number_of_guesses <= math.ceil(math.log2(range_of_guesses))
-
 
 
 def high_scores():
