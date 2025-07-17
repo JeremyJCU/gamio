@@ -30,10 +30,11 @@ def main():
     print(f"Thanks for playing ({number_of_games} times)!")
 
 
-def save_score(number_of_guesses, low, high):
+def save_score(number_of_guesses, high):
     """Save score to scores.txt with range"""
     with open("scores.txt", "a") as outfile:
-        print(f"{number_of_guesses}|{high - low + 1}", file=outfile)
+        marker = "!" if good_score(number_of_guesses, high) else ""
+        print(f"{number_of_guesses}|{high}|{marker}", file=outfile)
 
 
 def play(low, high):
@@ -56,7 +57,7 @@ def play(low, high):
         pass
     choice = input("Do you want to save your score? (y/N) ")
     if choice.upper() == "Y":
-        save_score(number_of_guesses, low, high)
+        save_score(number_of_guesses, high)
         return
     else:
         print("Fine then.")
@@ -90,15 +91,15 @@ def good_score(number_of_guesses, range_of_guesses):
 
 
 def high_scores():
+    """Display high scores in ascending order, highlighting efficient guesses"""
     scores = []
     with open("scores.txt") as in_file:
         for line in in_file:
             line = line.split("|")
-            scores.append((int(line[0]), int(line[1])))
+            scores.append((int(line[0]), int(line[1]), line[2]))
     scores.sort()
     for score in scores:
-        marker = "Efficient Guess!" if good_score(score[0], score[1]) else ""
-        print(f"Guesses: {score[0]}, Guess range:({score[1]}) {marker}")
+        print(f"Guesses: {score[0]}, Guessing range:({score[1]}) {score[2]}")
 
 
 main()
