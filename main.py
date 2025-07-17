@@ -33,7 +33,7 @@ def main():
 
 def save_score(number_of_guesses, high):
     """Save score to scores.txt with range"""
-    with open("scores.txt", "a") as outfile:
+    with open("scores.txt", "a", encoding="UTF-8") as outfile:
         marker = "!" if good_score(number_of_guesses, high) else ""
         print(f"{number_of_guesses}|{high}|{marker}", file=outfile)
 
@@ -94,7 +94,7 @@ def good_score(number_of_guesses, range_of_guesses):
 def high_scores():
     """Display high scores in ascending order, highlighting efficient guesses"""
     scores = []
-    with open("scores.txt") as in_file:
+    with open("scores.txt", "r", encoding="UTF-8") as in_file:
         for line in in_file:
             line = line.split("|")
             scores.append((int(line[0]), int(line[1]), line[2]))
